@@ -120,10 +120,12 @@ func main() {
 		panic("--scrapeURL is a required flag")
 	}
 
+	recordMetrics(*scrapeURL)
+
 	go func() {
 		for {
-			recordMetrics(*scrapeURL)
 			time.Sleep(*scrapeInterval)
+			recordMetrics(*scrapeURL)
 		}
 	}()
 
